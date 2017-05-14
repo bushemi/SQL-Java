@@ -53,7 +53,7 @@ public class Form extends AbstractEntity {
 	@Override
 	public String toString() {
 		return 	"id = " + getId() +
-				", name=" + getName();
+				", name = " + getName();
 	}
 
 	

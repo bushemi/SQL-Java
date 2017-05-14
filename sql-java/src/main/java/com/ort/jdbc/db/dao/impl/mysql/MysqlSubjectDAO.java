@@ -8,32 +8,32 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.ort.jdbc.db.connection.ConnectionManager;
-import com.ort.jdbc.db.dao.PassportDAO;
-import com.ort.jdbc.entities.Passport;
+import com.ort.jdbc.db.dao.SubjectDAO;
+import com.ort.jdbc.entities.Subject;
 
-public class MysqlPassportDAO implements PassportDAO {
+public class MysqlSubjectDAO implements SubjectDAO {
 
 	private ConnectionManager _mgr;
 	
-	public MysqlPassportDAO(ConnectionManager mgr) {
+	
+	public MysqlSubjectDAO(ConnectionManager mgr) {
 		_mgr = mgr;
 	}
 
+
 	@Override
-	public Collection<Passport> getAll() {
+	public Collection<Subject> getAll() {
 		Connection connection = _mgr.getConnection();
 		try {
 			Statement st = connection.createStatement();
-			ResultSet resultSet = st.executeQuery("SELECT * FROM passports");
-			Collection<Passport> result = new ArrayList<>();
+			ResultSet resultSet = st.executeQuery("SELECT * FROM subjects");
+			Collection<Subject> result = new ArrayList<>();
 			while(resultSet.next()) {
 				long id = resultSet.getLong(1);
-				String fn = resultSet.getString(2);
-				String ln = resultSet.getString(3);
-				Passport p = new Passport(fn, ln);
-				p.setId(id);
-				System.out.println(p.toString());
-				result.add(p);
+				String name = resultSet.getString(2);
+				Subject subj = new Subject(name);
+				subj.setId(id);
+				result.add(subj);
 			}
 			return result;
 		} catch (SQLException e) {

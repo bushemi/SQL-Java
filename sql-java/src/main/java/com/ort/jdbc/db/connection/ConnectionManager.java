@@ -1,7 +1,7 @@
 package com.ort.jdbc.db.connection;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -18,6 +18,7 @@ public class ConnectionManager {
 		}
 		
 		return _instance;
+		
 	}
 		
 	private String _dbUrl;
@@ -27,12 +28,13 @@ public class ConnectionManager {
 	private Connection _connection;
 	
 	private ConnectionManager() {
-		try (InputStream is = new FileInputStream("sql.properties");) {
+		String fileName = "resources/sql.properties";
+		try (InputStream is = new FileInputStream(new File(fileName));) {
 			Properties p = new Properties();
 			p.load(is);
 			_dbUrl = p.getProperty("mysql.url", "jdbc:mysql://localhost:3306/academy");
 			_username = p.getProperty("mysql.username", "root");
-			_password = p.getProperty("mysql.password", "qqqq");
+			_password = p.getProperty("mysql.password", "root");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,6 +44,7 @@ public class ConnectionManager {
 		try {
 			 Class.forName("com.mysql.jdbc.Driver");
 			_connection = DriverManager.getConnection(_dbUrl, _username, _password);
+			System.out.println("Connect");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
