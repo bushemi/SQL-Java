@@ -1,14 +1,14 @@
 package com.ort.jdbc.entities;
 
-public class MarksRepresentation extends AbstractEntity {
+public class MarkRepresentation extends AbstractEntity {
 	
 	private String _representation;
 
-	public MarksRepresentation() {
+	public MarkRepresentation() {
 	
 	}
 
-	public MarksRepresentation(String representation) {
+	public MarkRepresentation(String representation) {
 		super();
 		this._representation = representation;
 	}
@@ -37,7 +37,7 @@ public class MarksRepresentation extends AbstractEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MarksRepresentation other = (MarksRepresentation) obj;
+		MarkRepresentation other = (MarkRepresentation) obj;
 		long id = getId();
 		long id2 = other.getId();
 		if (id != 0 && id2 != 0 && id == id2) {
