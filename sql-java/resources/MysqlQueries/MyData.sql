@@ -83,12 +83,13 @@ VALUES
 ('PHP'),
 ('Chemistry'),
 ('MathLab'),
-('Photoshop');
+('Photoshop'),
+('JAVA');
 
 
 # 5 teachers
 INSERT INTO Teachers
-(id_passport)
+(passport_id)
 VALUES
 (23),
 ( 9),
@@ -97,7 +98,7 @@ VALUES
 ( 1);
 
 INSERT INTO Subject_teacher
-(id_subject, id_teacher)
+(subject_id, teacher_id)
 VALUES
 (1,  1),
 (2,  1),
@@ -105,10 +106,11 @@ VALUES
 (4, 26),
 (5, 23),
 (6,  9),
-(7, 25);
+(7, 25),
+(8, 26);
 
 INSERT INTO Student_group
-(id_student,id_group)
+(student_id, group_id)
 VALUES
 (24, 1),
 ( 2, 1),
@@ -144,7 +146,7 @@ INSERT INTO Mark_represent
  ('Awesome');
  
  INSERT INTO Marks
- ( id_student, id_group, id_subject, id_marks, date DATE, id_teacher)
+ ( student_id, group_id, subject_id, marks_id, date DATE, teacher_id)
  VALUES
 (24, 1, 1, 1, 2001-05-06, 1),
 ( 2, 1, 2, 1, 2001-05-06, 1),

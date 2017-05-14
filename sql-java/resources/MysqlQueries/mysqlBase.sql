@@ -6,21 +6,21 @@ use academy;
 
 create table  Students (
  id  serial,
-  id_passport  bigint unsigned,
+  passport_id  bigint unsigned,
   start_date DATE, 
   finish_date DATE DEFAULT NULL,
   primary key(id)
 );
 
 create table  Student_group(
-id_student bigint unsigned,
-id_group bigint unsigned
+student_id bigint unsigned,
+group_id bigint unsigned
 );
 
  create table  Groups(
  id serial,
  name varchar(16),
- id_form bigint unsigned,
+ form_id bigint unsigned,
  primary key(id)
  );
  
@@ -42,21 +42,21 @@ id_group bigint unsigned
  );
  create table Teachers(
  id serial,
- id_passport bigint unsigned,
+ passport_id bigint unsigned,
  primary key(id)
  );
  create table Subject_teacher(
-  id_subject bigint unsigned,
-  id_teacher bigint unsigned
+  subject_id bigint unsigned,
+  teacher_id bigint unsigned
  );
  create table Marks(
  id serial,
- id_student bigint unsigned,
- id_group bigint unsigned,
- id_subject bigint unsigned,
- id_marks bigint unsigned,
+ student_id bigint unsigned,
+ group_id bigint unsigned,
+ subject_id bigint unsigned,
+ marks_id bigint unsigned,
  date DATE,
- id_teacher bigint unsigned,
+ teacher_id bigint unsigned,
  primary key(id) 
  );
  create table Mark_represent(
@@ -65,27 +65,27 @@ id_group bigint unsigned
  primary key(id)
  );
 
- alter table Student_group add foreign key (id_student) references Students(id)
+ alter table Student_group add foreign key (student_id) references Students(id)
  on update cascade;
-  alter table Students add foreign key (id_passport) references Passport(id)
+  alter table Students add foreign key (passport_id) references Passports(id)
  on update cascade;
- alter table Student_group add foreign key (id_group) references Groups(id)
+ alter table Student_group add foreign key (group_id) references Groups(id)
  on update cascade;
- alter table Groups add foreign key (id_form) references forms(id)
+ alter table Groups add foreign key (form_id) references Forms(id)
  on update cascade;
- alter table teachers add foreign key (id_passport) references Passport(id)
+ alter table Teachers add foreign key (passport_id) references Passports(id)
  on update cascade;
- alter table subject_teacher add foreign key (id_subject) references Subjects(id)
+ alter table Subject_teacher add foreign key (subject_id) references Subjects(id)
  on update cascade;
- alter table subject_teacher add foreign key (id_teacher) references teachers(id)
+ alter table Subject_teacher add foreign key (teacher_id) references Teachers(id)
  on update cascade;
- alter table marks add foreign key (id_student) references Students(id)
+ alter table Marks add foreign key (student_id) references Students(id)
  on update cascade;
- alter table marks add foreign key (id_group) references Groups(id)
+ alter table Marks add foreign key (group_id) references Groups(id)
  on update cascade;
- alter table marks add foreign key (id_subject) references Subjects(id)
+ alter table Marks add foreign key (subject_id) references Subjects(id)
  on update cascade;
-  alter table marks add foreign key (id_marks) references marks_represent(id)
+  alter table Marks add foreign key (marks_id) references Mark_represent(id)
  on update cascade;
-  alter table marks add foreign key (id_teacher) references teachers(id)
+  alter table Marks add foreign key (teacher_id) references Teachers(id)
  on update cascade;
